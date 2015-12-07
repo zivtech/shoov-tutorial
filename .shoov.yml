@@ -1,23 +1,9 @@
 before_script:
-  # Exit one errors.
-  - set -e
-
-  # Install Behat
-  - cd ./behat
+  - cd behat
+  # Instead of composer install, we save time by getting
+  # a gzipped file with the vendor and bin directories.
+  - tar zxf behat-vendor.tar.gz
   - cp behat.local.yml.example behat.local.yml
-  - composer install
-  - cd ..
-
-  # Install webdriverCSS
-  - cd ./visual-monitor
-  - npm install
-  - cd ..
-
 
 script:
-  - cd ./behat
   - ./bin/behat --tags=~wip
-  - cd ..
-
-  - cd ./visual-monitor
-  - PROVIDER_PREFIX=browserstack SELECTED_CAPS=chrome mocha
