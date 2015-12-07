@@ -41,7 +41,7 @@ var caps = selectedCaps ? capsConfig[selectedCaps] : undefined;
 var providerPrefix = process.env.PROVIDER_PREFIX ? process.env.PROVIDER_PREFIX + '-' : '';
 var testName = selectedCaps ? providerPrefix + selectedCaps : providerPrefix + 'default';
 
-var baseUrl = process.env.BASE_URL ? process.env.BASE_URL : 'https://www.zivtech.com';
+var baseUrl = process.env.BASE_URL ? process.env.BASE_URL : 'https://www.zivtech.com/';
 
 var resultsCallback = process.env.DEBUG ? console.log : shoovWebdrivercss.processResults;
 
@@ -61,16 +61,12 @@ describe('Visual monitor testing', function() {
   it('should show the home page',function(done) {
     client
       .url(baseUrl)
-      .click('.mailchimp-close')
-      .pause(6000)
       .webdrivercss(testName + '.homepage', {
         name: '1',
-        hide:
-          [
-            '.zivtechBackgroundVideos-processed',
-            '.site-header__logo'
-          ],
-        screenWidth: selectedCaps == 'chrome' ? [960] : undefined,
+        exclude: [],
+        remove: [],
+        hide: [],
+        screenWidth: selectedCaps == 'chrome' ? [640, 960, 1200] : undefined,
       }, resultsCallback)
       .call(done);
   });
