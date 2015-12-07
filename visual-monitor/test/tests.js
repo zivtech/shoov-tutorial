@@ -70,7 +70,7 @@ describe('Visual monitor testing', function() {
             '.zivtechBackgroundVideos-processed',
             '.site-header__logo'
           ],
-        screenWidth: selectedCaps == 'chrome' ? [960] : undefined,
+        screenWidth: selectedCaps == 'chrome' ? [640, 960, 1200] : undefined,
       }, resultsCallback)
       .call(done);
   });
